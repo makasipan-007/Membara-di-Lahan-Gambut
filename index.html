@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membara di Lahan Gambut</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background-color: #121212; 
+            color: #f5f5f4; 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            background-image: radial-gradient(circle at 50% 0%, #291511 0%, #121212 70%);
+        }
+        header { 
+            background: linear-gradient(135deg, #1c0d0a 0%, #2d130e 100%); 
+            color: #ffffff; 
+            padding: 1.25rem 1rem; 
+            border-bottom: 2px solid #ef4444; 
+            box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.2); 
+        }
+        @media (min-width: 640px) {
+            header { padding: 1.75rem 2rem; }
+        }
+        .header-container { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-start; width: 100%; }
+        .header-top { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; width: 100%; }
+        .header-title { font-size: 1.35rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; color: #ffedd5; text-shadow: 0 2px 4px rgba(0,0,0,0.5); word-break: break-word; }
+        @media (min-width: 640px) {
+            .header-title { font-size: 1.75rem; gap: 0.75rem; }
+        }
+        .badge { background-color: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444; padding: 0.35rem 0.7rem; border-radius: 0.5rem; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 0.4rem; color: #fca5a5; font-weight: 600; width: fit-content; }
+        @media (min-width: 640px) {
+            .badge { padding: 0.4rem 0.8rem; font-size: 0.8125rem; }
+        }
+
+        main { max-width: 1200px; margin: 0 auto; padding: 1rem; flex-grow: 1; width: 100%; display: flex; flex-direction: column; gap: 1.5rem; }
+        @media (min-width: 640px) {
+            main { padding: 2rem; gap: 2rem; }
+        }
+
+        .card-total { background: #1e1b18; border-radius: 1rem; padding: 1.25rem; border: 1px solid #442621; box-shadow: 0 8px 20px rgba(0,0,0,0.4); display: flex; justify-content: space-between; align-items: center; position: relative; overflow: hidden; gap: 1rem; }
+        @media (min-width: 640px) {
+            .card-total { padding: 1.75rem; }
+        }
+        .card-total::before { content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: linear-gradient(to bottom, #f97316, #ef4444); }
+        .card-total-title { font-size: 0.75rem; font-weight: 600; color: #a8a29e; text-transform: uppercase; letter-spacing: 0.05em; }
+        @media (min-width: 640px) {
+            .card-total-title { font-size: 0.875rem; }
+        }
+        .card-total-value { font-size: 1.85rem; font-weight: 800; color: #f97316; margin-top: 0.35rem; text-shadow: 0 0 20px rgba(249, 115, 22, 0.3); word-break: break-all; }
+        @media (min-width: 640px) {
+            .card-total-value { font-size: 2.5rem; margin-top: 0.5rem; }
+        }
+        .card-total-value span { font-size: 0.95rem; font-weight: 600; color: #d6d3d1; }
+        @media (min-width: 640px) {
+            .card-total-value span { font-size: 1.125rem; }
+        }
+        .card-total-desc { font-size: 0.7rem; color: #78716c; margin-top: 0.2rem; }
+        @media (min-width: 640px) {
+            .card-total-desc { font-size: 0.75rem; margin-top: 0.25rem; }
+        }
+        .card-total-icon { width: 3rem; height: 3rem; min-width: 3rem; border-radius: 50%; background-color: rgba(249, 115, 22, 0.15); border: 1px solid rgba(249, 115, 22, 0.3); display: flex; align-items: center; justify-content: center; color: #f97316; font-size: 1.25rem; box-shadow: inset 0 0 10px rgba(249, 115, 22, 0.2); }
+        @media (min-width: 640px) {
+            .card-total-icon { width: 4rem; height: 4rem; min-width: 4rem; font-size: 1.75rem; }
+        }
+
+        .grid-charts { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        @media(min-width: 1024px) { 
+            .grid-charts { grid-template-columns: 1fr 1fr; gap: 2rem; } 
+        }
+
+        .chart-card { background: #1e1b18; border-radius: 1rem; padding: 1.25rem; border: 1px solid #442621; box-shadow: 0 8px 20px rgba(0,0,0,0.4); display: flex; flex-direction: column; width: 100%; overflow: hidden; }
+        @media (min-width: 640px) {
+            .chart-card { padding: 1.5rem; }
+        }
+        .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; gap: 0.5rem; flex-wrap: wrap; }
+        .chart-title { font-size: 1rem; font-weight: 700; color: #f5f5f4; display: flex; align-items: center; gap: 0.4rem; }
+        @media (min-width: 640px) {
+            .chart-title { font-size: 1.125rem; gap: 0.5rem; }
+        }
+        .chart-badge { font-size: 0.65rem; padding: 0.2rem 0.5rem; border-radius: 9999px; font-weight: 600; white-space: nowrap; }
+        @media (min-width: 640px) {
+            .chart-badge { font-size: 0.75rem; padding: 0.25rem 0.75rem; }
+        }
+        .badge-fire { background-color: rgba(249, 115, 22, 0.2); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.4); }
+        .badge-rose { background-color: rgba(239, 68, 68, 0.2); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.4); }
+        
+        .css-chart { display: flex; flex-direction: column; gap: 0.65rem; padding: 0.5rem 0; height: 280px; overflow-y: auto; width: 100%; }
+        @media (min-width: 640px) {
+            .css-chart { height: 320px; gap: 0.75rem; }
+        }
+        .bar-row { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; width: 100%; }
+        @media (min-width: 640px) {
+            .bar-row { gap: 0.75rem; font-size: 0.8125rem; }
+        }
+        .bar-label { width: 110px; min-width: 110px; text-align: right; color: #d6d3d1; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        @media (min-width: 640px) {
+            .bar-label { width: 140px; min-width: 140px; }
+        }
+        .bar-track { flex-grow: 1; background-color: #292524; border-radius: 4px; height: 16px; position: relative; overflow: hidden; border: 1px solid #442621; }
+        @media (min-width: 640px) {
+            .bar-track { height: 18px; }
+        }
+        .bar-fill { background: linear-gradient(90deg, #f97316, #ef4444); height: 100%; border-radius: 4px; transition: width 0.5s ease; box-shadow: 0 0 10px rgba(239, 68, 68, 0.4); }
+        .bar-value { width: 70px; min-width: 70px; text-align: left; font-weight: 600; color: #fdba74; font-size: 0.7rem; }
+        @media (min-width: 640px) {
+            .bar-value { width: 85px; min-width: 85px; font-size: 0.75rem; }
+        }
+
+        .line-chart-container { position: relative; height: 280px; width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        @media (min-width: 640px) {
+            .line-chart-container { height: 320px; }
+        }
+        svg.line-chart { width: 100%; height: 100%; overflow: visible; max-width: 100%; }
+
+        footer { background-color: #0c0a09; color: #78716c; padding: 1.25rem 1rem; text-align: center; font-size: 0.75rem; margin-top: auto; border-top: 1px solid #292524; }
+        @media (min-width: 640px) {
+            footer { padding: 1.75rem; }
+        }
+        footer a { color: #f97316; text-decoration: underline; font-weight: 600; }
+        footer a:hover { color: #fb923c; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="header-top">
+                <h1 class="header-title">
+                    🔥 Membara di Lahan Gambut
+                </h1>
+            </div>
+            <div class="badge">
+                ⚠️ Periode: Jan - Agu
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Stat Card -->
+        <div class="card-total">
+            <div>
+                <p class="card-total-title">Total Keseluruhan Area Terbakar</p>
+                <p class="card-total-value">243.241,1 <span>Ha</span></p>
+                <p class="card-total-desc">Akumulasi dari 22 provinsi di Indonesia</p>
+            </div>
+            <div class="card-total-icon">
+                🔥
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="grid-charts">
+            <!-- Monthly Trend Line Chart -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h2 class="chart-title">
+                        📈 Tren Bulanan Luas Terbakar
+                    </h2>
+                    <span class="chart-badge badge-fire">Eskalasi Bulanan</span>
+                </div>
+                <div class="line-chart-container">
+                    <svg class="line-chart" id="lineChart" viewBox="0 0 600 280" preserveAspectRatio="xMidYMid meet">
+                        <!-- Rendered dynamically -->
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Top 10 Provinces Chart -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h2 class="chart-title">
+                        📊 Top 10 Provinsi Terluas
+                    </h2>
+                    <span class="chart-badge badge-rose">Dalam Hektar (Ha)</span>
+                </div>
+                <div class="css-chart" id="provinceCSSChart"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Analisis <a href="https://www.pantaugambut.id" target="_blank" rel="noopener noreferrer">Pantau Gambut</a></p>
+    </footer>
+
+    <script>
+        const rawData = [
+            {provinsi: 'Aceh', jan: 462.82, feb: 948.21, mar: 820.02, apr: 280.75, may: 430.73, jun: 820.40, jul: 581.72, aug: 388.18, total: 4732.83},
+            {provinsi: 'Bengkulu', jan: 0.99, feb: 0.00, mar: 0.54, apr: 1.35, may: 1.53, jun: 1.62, jul: 2.10, aug: 0.00, total: 8.14},
+            {provinsi: 'Jambi', jan: 24.11, feb: 21.79, mar: 21.12, apr: 38.38, may: 55.87, jun: 11.26, jul: 68.09, aug: 455.74, total: 696.35},
+            {provinsi: 'Kalimantan Barat', jan: 325.33, feb: 1220.62, mar: 8783.50, apr: 7524.28, may: 2278.81, jun: 3528.08, jul: 2412.19, aug: 47134.59, total: 73207.38},
+            {provinsi: 'Kalimantan Selatan', jan: 26.59, feb: 2.52, mar: 0.45, apr: 164.86, may: 75.77, jun: 138.50, jul: 659.96, aug: 9573.89, total: 10642.53},
+            {provinsi: 'Kalimantan Tengah', jan: 312.73, feb: 648.44, mar: 1298.66, apr: 680.27, may: 234.76, jun: 853.01, jul: 2916.14, aug: 54157.84, total: 61101.85},
+            {provinsi: 'Kalimantan Timur', jan: 9.18, feb: 5.58, mar: 82.35, apr: 879.18, may: 132.03, jun: 52.74, jul: 92.25, aug: 4036.57, total: 5289.87},
+            {provinsi: 'Kalimantan Utara', jan: 17.23, feb: 19.70, mar: 18.58, apr: 29.31, may: 89.52, jun: 43.02, jul: 28.95, aug: 4.01, total: 250.31},
+            {provinsi: 'Kepulauan Bangka Belitung', jan: 13.60, feb: 48.37, mar: 65.12, apr: 82.91, may: 76.05, jun: 59.71, jul: 128.54, aug: 572.96, total: 1047.26},
+            {provinsi: 'Kepulauan Riau', jan: 1.26, feb: 5.18, mar: 1.98, apr: 23.76, may: 0.00, jun: 11.79, jul: 8.10, aug: 30.33, total: 82.41},
+            {provinsi: 'Lampung', jan: 0.00, feb: 0.00, mar: 0.00, apr: 5.59, may: 0.00, jun: 1.08, jul: 5.53, aug: 63.36, total: 75.57},
+            {provinsi: 'Papua', jan: 0.36, feb: 27.13, mar: 3.34, apr: 0.45, may: 1.67, jun: 3.88, jul: 0.47, aug: 8.63, total: 45.93},
+            {provinsi: 'Papua Barat', jan: 35.87, feb: 101.69, mar: 250.60, apr: 74.83, may: 23.68, jun: 279.74, jul: 259.13, aug: 2608.40, total: 3633.92},
+            {provinsi: 'Papua Pegunungan', jan: 0.09, feb: 1.81, mar: 0.90, apr: 7.28, may: 1.28, jun: 2.61, jul: 0.00, aug: 0.00, total: 13.97},
+            {provinsi: 'Papua Selatan', jan: 859.29, feb: 161.04, mar: 322.18, apr: 36.03, may: 199.20, jun: 1348.59, jul: 16075.33, aug: 29059.16, total: 48060.80},
+            {provinsi: 'Papua Tengah', jan: 843.43, feb: 577.60, mar: 494.41, apr: 457.78, may: 41.77, jun: 50.70, jul: 176.50, aug: 1044.09, total: 3686.26},
+            {provinsi: 'Riau', jan: 364.80, feb: 1496.28, mar: 2442.52, apr: 1767.33, may: 3418.60, jun: 1751.17, jul: 1395.38, aug: 1610.41, total: 14246.48},
+            {provinsi: 'Sulawesi Barat', jan: 61.94, feb: 151.45, mar: 0.00, apr: 74.18, may: 39.16, jun: 11.79, jul: 46.82, aug: 0.00, total: 385.34},
+            {provinsi: 'Sulawesi Tengah', jan: 3.96, feb: 3.42, mar: 6.48, apr: 14.14, may: 0.45, jun: 4.77, jul: 2.97, aug: 0.00, total: 36.20},
+            {provinsi: 'Sumatera Barat', jan: 946.57, feb: 328.15, mar: 578.86, apr: 808.19, may: 1029.45, jun: 1146.58, jul: 688.48, aug: 176.85, total: 5703.14},
+            {provinsi: 'Sumatera Selatan', jan: 14.05, feb: 193.65, mar: 180.04, apr: 658.61, may: 773.49, jun: 510.66, jul: 1044.15, aug: 5847.12, total: 9221.77},
+            {provinsi: 'Sumatera Utara', jan: 102.12, feb: 25.58, mar: 42.97, apr: 206.46, may: 107.98, jun: 97.37, jul: 129.06, aug: 361.25, total: 1072.78}
+        ];
+
+        // Render Line Chart SVG with Fire Theme Colors
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'];
+        const fullMonths = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus'];
+        const monthKeys = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug'];
+        const monthlyTotals = monthKeys.map(k => rawData.reduce((acc, curr) => acc + curr[k], 0));
+        
+        const svg = document.getElementById('lineChart');
+        const maxVal = Math.max(...monthlyTotals);
+        
+        const width = 600;
+        const height = 280;
+        const padding = 45;
+        const chartWidth = width - padding * 2;
+        const chartHeight = height - padding * 2;
+
+        let points = [];
+        monthlyTotals.forEach((val, i) => {
+            const x = padding + (i / (monthlyTotals.length - 1)) * chartWidth;
+            const y = height - padding - (val / maxVal) * chartHeight;
+            points.push({x, y, val, label: fullMonths[i]});
+        });
+
+        let svgContent = '';
+        
+        // Grid lines
+        for(let i = 0; i <= 4; i++) {
+            const y = padding + (chartHeight / 4) * i;
+            const valLabel = Math.round(maxVal - (maxVal / 4) * i).toLocaleString('id-ID');
+            svgContent += `<line x1="${padding}" y1="${y}" x2="${width - padding}" y2="${y}" stroke="#292524" stroke-dasharray="4"/>`;
+            svgContent += `<text x="${padding - 8}" y="${y + 4}" fill="#78716c" font-size="9" text-anchor="end">${valLabel}</text>`;
+        }
+
+        // Area path under line with fire gradient glow
+        let areaPath = `M ${points[0].x} ${height - padding}`;
+        points.forEach(p => areaPath += ` L ${p.x} ${p.y}`);
+        areaPath += ` L ${points[points.length - 1].x} ${height - padding} Z`;
+        svgContent += `<path d="${areaPath}" fill="rgba(249, 115, 22, 0.15)"/>`;
+
+        // Line path (fiery orange/red)
+        let linePath = `M ${points[0].x} ${points[0].y}`;
+        points.forEach((p, i) => { if(i > 0) linePath += ` L ${p.x} ${p.y}`; });
+        svgContent += `<path d="${linePath}" fill="none" stroke="#f97316" stroke-width="3" filter="drop-shadow(0px 0px 4px rgba(249,115,22,0.6))"/>`;
+
+        // Points and Labels
+        points.forEach((p, i) => {
+            svgContent += `<circle cx="${p.x}" cy="${p.y}" r="4" fill="#1e1b18" stroke="#ef4444" stroke-width="3"/>`;
+            svgContent += `<text x="${p.x}" y="${height - padding + 18}" fill="#d6d3d1" font-size="10" font-weight="600" text-anchor="middle">${months[i]}</text>`;
+            svgContent += `<text x="${p.x}" y="${p.y - 8}" fill="#fdba74" font-size="9" font-weight="700" text-anchor="middle">${Math.round(p.val).toLocaleString('id-ID')}</text>`;
+        });
+
+        svg.innerHTML = svgContent;
+
+        // Render Top 10 Provinces Bar Chart
+        const sortedProvinces = [...rawData].sort((a, b) => b.total - a.total).slice(0, 10);
+        const maxProv = sortedProvinces[0].total;
+
+        const provinceContainer = document.getElementById('provinceCSSChart');
+        sortedProvinces.forEach(p => {
+            const pct = (p.total / maxProv) * 100;
+            const row = document.createElement('div');
+            row.className = 'bar-row';
+            row.innerHTML = `
+                <div class="bar-label" title="${p.provinsi}">${p.provinsi}</div>
+                <div class="bar-track"><div class="bar-fill" style="width: ${pct}%;"></div></div>
+                <div class="bar-value">${p.total.toLocaleString('id-ID', {maximumFractionDigits: 0})} Ha</div>
+            `;
+            provinceContainer.appendChild(row);
+        });
+    </script>
+</body>
+</html>
